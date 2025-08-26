@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mountain Seed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(120deg, #2c5c4b, #1a3c2f);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Tree background elements */
+        .tree {
+            position: absolute;
+            bottom: 0;
+            z-index: -1;
+        }
+        
+        .tree-1 {
+            left: 5%;
+            height: 350px;
+            color: #1a3329;
+        }
+        
+        .tree-2 {
+            left: 25%;
+            height: 400px;
+            color: #152c23;
+        }
+        
+        .tree-3 {
+            right: 25%;
+            height: 380px;
+            color: #1a3329;
+        }
+        
+        .tree-4 {
+            right: 5%;
+            height: 320px;
+            color: #152c23;
+        }
+        
+        /* Container for login form */
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            max-width: 90%;
+            padding: 40px;
+            transform: translateY(-5%);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo i {
+            font-size: 50px;
+            color: #2c5c4b;
+        }
+        
+        .logo h1 {
+            color: #2c5c4b;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px 15px 15px 50px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 10px;
+            outline: none;
+            font-size: 16px;
+            color: #333;
+            transition: all 0.3s;
+        }
+        
+        .input-group input:focus {
+            background: #e0e0e0;
+            box-shadow: 0 0 10px rgba(44, 92, 75, 0.3);
+        }
+        
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            color: #2c5c4b;
+            font-size: 20px;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background: #2c5c4b;
+            color: white;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            background: #1a3c2f;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .links a {
+            color: #2c5c4b;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .links a:hover {
+            color: #1a3c2f;
+            text-decoration: underline;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+            
+            .tree {
+                display: none;
+            }
+            
+            body {
+                background: linear-gradient(120deg, #2c5c4b, #1a3c2f);
+            }
+        }
+        
+        /* Animated leaves */
+        .leaves {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -2;
+        }
+        
+        .leaf {
+            position: absolute;
+            background-color: #3c7965;
+            border-radius: 50% 0 50% 0;
+            opacity: 0.3;
+            animation: float 15s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(720deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Tree background elements -->
+    <div class="tree tree-1">
+        <svg viewBox="0 0 100 400">
+            <path d="M50,0 L60,150 L40,150 Z" fill="currentColor"/>
+            <path d="M50,100 L65,250 L35,250 Z" fill="currentColor"/>
+            <path d="M50,200 L70,350 L30,350 Z" fill="currentColor"/>
+            <path d="M45,350 L55,350 L50,400 Z" fill="#5d4037"/>
+        </svg>
+    </div>
+    
+    <div class="tree tree-2">
+        <svg viewBox="0 0 100 400">
+            <path d="M50,0 L65,160 L35,160 Z" fill="currentColor"/>
+            <path d="M50,120 L70,260 L30,260 Z" fill="currentColor"/>
+            <path d="M50,220 L75,370 L25,370 Z" fill="currentColor"/>
+            <path d="M45,350 L55,350 L50,400 Z" fill="#5d4037"/>
+        </svg>
+    </div>
+    
+    <div class="tree tree-3">
+        <svg viewBox="0 0 100 400">
+            <path d="M50,0 L65,150 L35,150 Z" fill="currentColor"/>
+            <path d="M50,100 L70,250 L30,250 Z" fill="currentColor"/>
+            <path d="M50,200 L75,360 L25,360 Z" fill="currentColor"/>
+            <path d="M45,350 L55,350 L50,400 Z" fill="#5d4037"/>
+        </svg>
+    </div>
+    
+    <div class="tree tree-4">
+        <svg viewBox="0 0 100 400">
+            <path d="M50,0 L60,140 L40,140 Z" fill="currentColor"/>
+            <path d="M50,90 L65,240 L35,240 Z" fill="currentColor"/>
+            <path d="M50,190 L70,340 L30,340 Z" fill="currentColor"/>
+            <path d="M45,350 L55,350 L50,400 Z" fill="#5d4037"/>
+        </svg>
+    </div>
+    
+    <!-- Animated leaves -->
+    <div class="leaves" id="leaves"></div>
+    
+    <!-- Login form -->
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-tree"></i>
+            <h1>Mountain Seed</h1>
+        </div>
+        
+        <form>
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Username" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Password" required>
+            </div>
+            
+            <button type="submit" class="btn">Login</button>
+            
+            <div class="links">
+                <a href="#">Forgot Password?</a>
+                <a href="#">Create Account</a>
+            </div>
+        </form>
+        
+        <div class="footer">
+            <p></p>
+        </div>
+    </div>
+
+    <script>
+        // Create animated leaves
+        const leavesContainer = document.getElementById('leaves');
+        const colors = ['#2c5c4b', '#3c7965', '#4d8c7f', '#5da095'];
+        
+        for (let i = 0; i < 30; i++) {
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
+            
+            // Random properties
+            const size = Math.random() * 20 + 10;
+            const left = Math.random() * 100;
+            const delay = Math.random() * 15;
+            const duration = Math.random() * 10 + 15;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            leaf.style.width = `${size}px`;
+            leaf.style.height = `${size}px`;
+            leaf.style.left = `${left}vw`;
+            leaf.style.animationDelay = `${delay}s`;
+            leaf.style.animationDuration = `${duration}s`;
+            leaf.style.backgroundColor = color;
+            
+            leavesContainer.appendChild(leaf);
+        }
+    </script>
+</body>
+</html>

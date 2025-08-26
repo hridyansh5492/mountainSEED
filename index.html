@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mountain Seed- Environmental Action Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c5c4b;
+            --secondary: #4d8c7f;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #1a3c2f;
+            --text: #2c3e50;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(120deg, var(--primary), var(--dark));
+            color: white;
+            padding: 15px 5%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        nav a:hover, nav a.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .auth-btn {
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .login-btn:hover {
+            background: white;
+            color: var(--dark);
+        }
+
+        .signup-btn {
+            background: var(--accent);
+            border: 2px solid var(--accent);
+            color: white;
+        }
+
+        .signup-btn:hover {
+            background: #e67e22;
+            border-color: #e67e22;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 60, 47, 0.8), rgba(26, 60, 47, 0.8)), url('https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 5%;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1.1rem;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #e67e22;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--dark);
+        }
+
+        /* Main Content Sections */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* Articles Section */
+        .articles {
+            padding: 40px 0 80px;
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-img {
+            height: 200px;
+            background: #ddd;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .article-content h3 {
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--secondary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* Tree Planting Section */
+        .tree-planting {
+            background: var(--light);
+            padding: 80px 0;
+        }
+
+        .initiative-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .initiative-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .initiative-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .initiative-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--secondary);
+            color: white;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #eee;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 5px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        /* Marketplace Section */
+        .marketplace {
+            padding: 80px 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-img {
+            height: 200px;
+            background: #ddd;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .product-rating {
+            color: #f39c12;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 12px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: var(--primary);
+        }
+
+        /* Tabs for Section Navigation */
+        .section-tabs {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            gap: 5px;
+        }
+
+        .tab {
+            padding: 15px 30px;
+            background: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .tab:hover:not(.active) {
+            background: #f0f0f0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 5% 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            nav ul {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-tabs {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .article-grid, .initiative-cards, .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-seedling"></i>
+                <span>Mountain Seed</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="/index.html" class="active">Home</a></li>
+                    <li><a href="/pages/articles.html">Articles</a></li>
+                    <li><a href="/pages/plantAtree.html">Tree Planting</a></li>
+                    <li><a href="/pages/marketplace.html">Marketplace</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <button class="auth-btn login-btn">Log In</button>
+                <button class="auth-btn signup-btn">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Take Action for a Greener Planet</h1>
+            <p>Join our community of environmental enthusiasts. Read articles, participate in tree planting initiatives, and shop eco-friendly products.</p>
+        </div>
+    </section>
+
+    <!-- Section Tabs -->
+    <div class="container">
+        <div class="section-tabs">
+            <button class="tab active">Articles</button>
+            <button class="tab">Tree Planting</button>
+            <button class="tab">Marketplace</button>
+        </div>
+    </div>
+
+    <!-- Articles Section -->
+    <section class="articles">
+        <div class="container">
+            <div class="section-title">
+                <h2>Environmental Articles</h2>
+                <p>Stay informed with the latest news and insights about environmental conservation</p>
+            </div>
+            
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="article-content">
+                        <h3>10 Ways to Reduce Your Carbon Footprint</h3>
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> June 12, 2025</span>
+                            <span><i class="far fa-user"></i> Deepak Khari</span>
+                        </div>
+                        <p>Practical tips to help you live a more sustainable lifestyle and reduce your impact on the environment.</p>
+                        <a href="pages/aData/b.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1536939459929-2c5bd6a7ef89?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="article-content">
+                        <h3>The Importance of Biodiversity in Urban Areas</h3>
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> May 28, 2025</span>
+                            <span><i class="far fa-user"></i> Jamanu Das</span>
+                        </div>
+                        <p>How urban planning can incorporate green spaces to support local ecosystems and improve quality of life.</p>
+                        <a href="pages/aData/a.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="article-content">
+                        <h3>How Climate Change is Affecting Our Land</h3>
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> May 15, 2025</span>
+                            <span><i class="far fa-user"></i> Mamta Joshi</span>
+                        </div>
+                        <p>An in-depth look at the effects of rising temperatures and acidification on marine ecosystems.</p>
+                        <a href="pages/aData/c.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Mountain Seed</h3>
+                    <p>Connecting people with nature through actionable initiatives and sustainable shopping.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="#">Articles</a></li>
+                        <li><a href="#">Tree Planting</a></li>
+                        <li><a href="#">Marketplace</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        const sections = document.querySelectorAll('section');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Scroll to corresponding section
+                const sectionId = tab.textContent.toLowerCase().replace(' ', '-');
+                const section = document.querySelector(`.${sectionId}`);
+                
+                if (section) {
+                    window.scrollTo({
+                        top: section.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add to cart functionality
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const product = button.closest('.initiative-card') || button.closest('.product-card');
+                const title = product.querySelector('h3').textContent;
+                
+                button.textContent = 'Added to Cart!';
+                button.style.background = '#2c5c4b';
+                
+                setTimeout(() => {
+                    button.textContent = button.closest('.initiative-card') ? 'Support This Project' : 'Add to Cart';
+                    button.style.background = '';
+                }, 2000);
+                
+                // In a real application, you would add the item to a cart here
+                console.log(`Added: ${title}`);
+            });
+        });
+    </script>
+</body>
+</html>
